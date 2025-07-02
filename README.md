@@ -6,7 +6,7 @@ An AI-powered tool that helps you improve your resume based on specific job desc
 - Upload a resume (PDF or Word)
 - Paste a job description
 - Get a match score and rewrite suggestions
-- Improve tone, grammar, and keyword alignment
+- Improve tone, grammar, and keyword  alignment
 - Built using GPT-4 and natural language prompts
 
 ## 📦 Tech Stack
