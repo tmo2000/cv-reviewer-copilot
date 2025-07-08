@@ -1,116 +1,67 @@
-# 📄 CV Reviewer Copilot
+# 🤖 CV Reviewer Copilot
 
-An AI-powered tool that analyzes a resume against a job description and provides detailed feedback on alignment, strengths, and areas for improvement — all through a clean Streamlit interface.
+A Streamlit-powered AI tool that helps job seekers analyze and tailor their resumes for specific job descriptions. Upload a resume and a job description — get back feedback and improvement suggestions, powered by a language model.
 
 ---
 
 ## 🚀 Features
 
-- 🧠 Uses Hugging Face Transformers (`flan-t5-base`) for intelligent feedback
-- 📄 Accepts `.pdf` and `.txt` resumes
-- 📌 Upload job descriptions in `.txt` format
-- ⚡ Lightweight UI powered by Streamlit
-- 🔒 API key management via `.env`
+- 📄 Upload resume (PDF or DOCX)
+- 📝 Upload job description (TXT only)
+- 🔍 AI-powered analysis using a transformer model
+- 💡 Actionable resume tailoring tips
+- 🖥️ Simple and intuitive Streamlit UI
 
 ---
 
-## 🏗️ Project Structure
+## 🧠 Model
 
+The app currently uses Hugging Face's [`google/flan-t5-small`](https://huggingface.co/google/flan-t5-small) model for inference. You can upgrade to a more powerful model like `flan-t5-base` or `flan-t5-large` by changing the model name in `model_runner.py`.
+
+To use Hugging Face-hosted models, add your Hugging Face API key to a `.env` file:
+
+
+## 🛠️ Installation
+1. Clone the repository:
+
+git clone https://github.com/yourusername/cv-reviewer-copilot.git
+cd cv-reviewer-copilot
+
+2. Set up a virtual environment:
+python -m venv .venv
+source .venv/bin/activate    # On Windows: .venv\Scripts\activate
+
+3. Install dependencies:
+pip install -r requirements.txt
+
+4. Create .env file with your Hugging Face token:
+echo HUGGINGFACE_API_KEY=your_token_here > .env
+
+## 🏃 Running the App
+
+Run the app with Streamlit:
+streamlit run app.py
+
+## 📁 File Structure
 cv-reviewer-copilot/
 │
-├── app.py # Main Streamlit app
+├── app.py                    # Streamlit frontend
 ├── utils/
-│ ├── file_extractors.py # Resume/job description text parsers
-│ └── model_runner.py # Model loading and analysis logic
-├── sample_data/
-│ ├── resume.pdf
-│ └── sample_job.txt
-├── .env # Your Hugging Face API key
+│   ├── model_runner.py       # Model loading and analysis logic
+│   └── file_extractors.py    # File reading and cleaning functions
+├── sample_data/              # Example resume and job description
+├── .env                      # API key (not committed)
 ├── requirements.txt
 └── README.md
 
-yaml
-Copy code
+## ✅ To-Do
+ Improve feedback quality using more powerful models (e.g., FLAN-T5 Base or GPT)
 
----
+ Add keyword matching and ATS score simulation
 
-## ⚙️ Setup Instructions
+ Support job description in PDF format
 
-### 1. Clone the Repository
+ Enable saving feedback reports
 
-```bash
-git clone https://github.com/yourusername/cv-reviewer-copilot.git
-cd cv-reviewer-copilot
-2. Set Up a Virtual Environment
-bash
-Copy code
-python -m venv .venv
-# Activate the environment
-# For Windows:
-.venv\Scripts\activate
-# For macOS/Linux:
-source .venv/bin/activate
-3. Install Dependencies
-bash
-Copy code
-pip install -r requirements.txt
-4. Add Your API Key
-Create a .env file in the root directory:
 
-ini
-Copy code
-HUGGINGFACE_API_KEY=your_huggingface_api_key_here
-5. Run the App
-bash
-Copy code
-streamlit run app.py
-🧠 Model
-This project uses:
 
-google/flan-t5-base: A powerful language model from Hugging Face's model hub.
-
-Model downloading is automatic on first run.
-
-🧪 Usage Instructions
-Upload a resume (.pdf or .txt)
-
-Upload a job description (.txt)
-
-Click 🔍 Analyze Resume
-
-You'll receive structured feedback highlighting:
-
-✅ Strengths
-
-⚠️ Suggestions for improvement
-
-🔁 Resume-job alignment
-
-✅ Example Output
-vbnet
-Copy code
-✅ Strengths:
-- Strong experience in data analysis
-- Proficient in Python, SQL, and forecasting models
-
-⚠️ Suggestions:
-- Resume doesn't mention project management skills listed in the job description
-- Consider tailoring technical terminology to match the job post
-📌 Notes
-Ensure resume and job description are clear, specific, and well-formatted for best results.
-
-You can extend support for .docx or other formats inside file_extractors.py.
-
-Currently uses flan-t5-base. You can experiment with larger or domain-specific models by updating model_runner.py.
-
-🛠️ Future Enhancements
-📊 Add scoring system for resume-job match
-
-🔗 LinkedIn integration
-
-🗂️ Save user feedback sessions
-
-🧠 Fine-tune model for resume screening
-
-📎 License
-This project is under the MIT License. See LICENSE for details.
