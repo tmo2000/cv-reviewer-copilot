@@ -23,9 +23,8 @@ To use Hugging Face-hosted models, add your Hugging Face API key to a `.env` fil
 
 ## 🛠️ Installation
 1. Clone the repository:
-
-git clone https://github.com/yourusername/cv-reviewer-copilot.git
-cd cv-reviewer-copilot
+   git clone        https://github.com/yourusername/cv-reviewer-copilot.git
+   cd cv-reviewer-copilot
 
 2. Set up a virtual environment:
 python -m venv .venv
