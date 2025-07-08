@@ -1,38 +1,116 @@
-# CV Reviewer Copilot
+# 📄 CV Reviewer Copilot
 
-A lightweight, locally-run AI-powered copilot to help you review resumes and job descriptions using natural language.
+An AI-powered tool that analyzes a resume against a job description and provides detailed feedback on alignment, strengths, and areas for improvement — all through a clean Streamlit interface.
 
-## 🚀 What It Does
+---
 
-This tool allows you to:
+## 🚀 Features
 
-- Summarize resumes or job descriptions
-- Check alignment between a CV and a job description
-- Ask natural-language questions like:
-  - “Does this CV show leadership experience?”
-  - “What are the candidate’s strengths and weaknesses?”
-  - “Is this CV suitable for the role of a product manager?”
+- 🧠 Uses Hugging Face Transformers (`flan-t5-base`) for intelligent feedback
+- 📄 Accepts `.pdf` and `.txt` resumes
+- 📌 Upload job descriptions in `.txt` format
+- ⚡ Lightweight UI powered by Streamlit
+- 🔒 API key management via `.env`
 
-It uses a fine-tuned version of Google's `flan-t5-small` model from Hugging Face to run efficiently on machines with 8GB RAM and no dedicated GPU.
+---
 
-## 🔧 Features
+## 🏗️ Project Structure
 
-- Runs completely offline (no API keys or cloud services needed)
-- Designed for local use in Jupyter Notebook or Python script
-- Compatible with modest hardware (8GB RAM or more)
-- Preloaded with prompt templates for structured querying
-## 🛠️ Tools and Technologies Used
+cv-reviewer-copilot/
+│
+├── app.py # Main Streamlit app
+├── utils/
+│ ├── file_extractors.py # Resume/job description text parsers
+│ └── model_runner.py # Model loading and analysis logic
+├── sample_data/
+│ ├── resume.pdf
+│ └── sample_job.txt
+├── .env # Your Hugging Face API key
+├── requirements.txt
+└── README.md
 
-- **Python**
-- **Hugging Face Transformers** – For loading and interacting with the `flan-t5-small` model  
-- **Hugging Face Datasets** – For quick testing and examples (optional)
-- **PyTorch** – Backend for running the model (compatible with CPU)
-- **Jupyter Notebook** – For interactive use and testing
-- **Textwrap & Utils** – For formatting and display enhancements
-- 
-## 📁 How to Use
+yaml
+Copy code
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/<your-username>/cv-reviewer-copilot.git
-   cd cv-reviewer-copilot
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/cv-reviewer-copilot.git
+cd cv-reviewer-copilot
+2. Set Up a Virtual Environment
+bash
+Copy code
+python -m venv .venv
+# Activate the environment
+# For Windows:
+.venv\Scripts\activate
+# For macOS/Linux:
+source .venv/bin/activate
+3. Install Dependencies
+bash
+Copy code
+pip install -r requirements.txt
+4. Add Your API Key
+Create a .env file in the root directory:
+
+ini
+Copy code
+HUGGINGFACE_API_KEY=your_huggingface_api_key_here
+5. Run the App
+bash
+Copy code
+streamlit run app.py
+🧠 Model
+This project uses:
+
+google/flan-t5-base: A powerful language model from Hugging Face's model hub.
+
+Model downloading is automatic on first run.
+
+🧪 Usage Instructions
+Upload a resume (.pdf or .txt)
+
+Upload a job description (.txt)
+
+Click 🔍 Analyze Resume
+
+You'll receive structured feedback highlighting:
+
+✅ Strengths
+
+⚠️ Suggestions for improvement
+
+🔁 Resume-job alignment
+
+✅ Example Output
+vbnet
+Copy code
+✅ Strengths:
+- Strong experience in data analysis
+- Proficient in Python, SQL, and forecasting models
+
+⚠️ Suggestions:
+- Resume doesn't mention project management skills listed in the job description
+- Consider tailoring technical terminology to match the job post
+📌 Notes
+Ensure resume and job description are clear, specific, and well-formatted for best results.
+
+You can extend support for .docx or other formats inside file_extractors.py.
+
+Currently uses flan-t5-base. You can experiment with larger or domain-specific models by updating model_runner.py.
+
+🛠️ Future Enhancements
+📊 Add scoring system for resume-job match
+
+🔗 LinkedIn integration
+
+🗂️ Save user feedback sessions
+
+🧠 Fine-tune model for resume screening
+
+📎 License
+This project is under the MIT License. See LICENSE for details.
